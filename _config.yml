@@ -71,3 +71,6 @@ deploy:
   type: git
   repo: ssh://github.com/leasunhy/leasunhy.github.io
   branch: master
+
+disqus_shortname: leasunhy-blog
+
