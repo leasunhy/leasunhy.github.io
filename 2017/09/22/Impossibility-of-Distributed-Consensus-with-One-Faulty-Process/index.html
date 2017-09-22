@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Distributed Systems,PODS,Classic Papers,Reading Notes," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Recently I started reading the most classical papers in the field of distributed systems. The first paper I read was Impossibility of Distributed Consensus with One Faulty Process. This paper, publish">
+<meta name="keywords" content="Distributed Systems,PODS,Classic Papers,Reading Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Impossibility of Distributed Consensus with One Faulty Process">
+<meta property="og:url" content="http://leasunhy.com/2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/index.html">
+<meta property="og:site_name" content="Thoughts">
+<meta property="og:description" content="Recently I started reading the most classical papers in the field of distributed systems. The first paper I read was Impossibility of Distributed Consensus with One Faulty Process. This paper, publish">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-22T14:43:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Impossibility of Distributed Consensus with One Faulty Process">
+<meta name="twitter:description" content="Recently I started reading the most classical papers in the field of distributed systems. The first paper I read was Impossibility of Distributed Consensus with One Faulty Process. This paper, publish">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://leasunhy.com/2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/"/>
+
+
+
+
+
+  <title>Impossibility of Distributed Consensus with One Faulty Process | Thoughts</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '65153179-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Thoughts</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leasunhy.com/2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leasunhy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thoughts">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Impossibility of Distributed Consensus with One Faulty Process</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-22T13:17:11+08:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Readings/" itemprop="url" rel="index">
+                    <span itemprop="name">Readings</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Recently I started reading the most classical papers in the field of distributed systems.
+The first paper I read was <em>Impossibility of Distributed Consensus with One Faulty Process</em>.
+This paper, published in April 1985 by Fischer, Lynch and Patterson, contributes the community
+with the famous <em>FLP impossibility result</em>, which placed an upper bound on distributed consensus
+in an asynchronous environment.</p>
+<p>The proof itself was not easy to follow, but there are already explanations from others all
+around, so I would focus on my own reflects on the paper, not on the proof itself.
+For a detailed explanation of the proof, I heartily recommend
+<a href="http://the-paper-trail.org/blog/a-brief-tour-of-flp-impossibility/" target="_blank" rel="external">this blog post</a>.</p>
+<a id="more"></a>
+<h1 id="On-the-System-Model"><a href="#On-the-System-Model" class="headerlink" title="On the System Model"></a>On the System Model</h1><p>The paper points out that there isn’t a single consensus protocol with which a distributed
+system is guaranteed to reach agreement even with only one faulty process.</p>
+<p>To do so, the paper first specifies a model for the system. In the model, the system is asynchronous,
+meaning that the messages can be arbitrarily delayed, and the clocks of different processes can drift apart<sup>1</sup>.
+Also, the only type of failure that would happen in the system is process crashes and the faulty
+processes will just stop (i.e. won’t generate random responses or behave incorrectly) in such cases.
+Messages are guaranteed to be delivered correctly and exactly once (though the messages may be delayed).</p>
+<p>Now, a careful reader might have wondered whether the model is practical: on one hand, being totally
+asynchronous, the model models the weakest distributed setting (correct me if I’m wrong); on the other hand,
+however, the fail-stop failures are the easiest<sup>2</sup> to solve among all the failure types; the assumptions made on
+the message system seem strange too. As the model would determine the applicability of the conclusion, what
+does <em>FLP impossibility result</em> say indeed? In fact, the strong assumptions made on the failure model
+and the message system help generalize the result. By our intuition, with more severe and harder to solve failures,
+it is surely harder for the system to reach consensus, right? Thus, the result actually
+says that there exist no totally correct consensus protocols for all totally asynchronous systems.</p>
+<h1 id="On-the-0-1-Consensus-Problem"><a href="#On-the-0-1-Consensus-Problem" class="headerlink" title="On the 0-1 Consensus Problem"></a>On the 0-1 Consensus Problem</h1><p>The proving process would not have been so succinct if it had been done without the simplification of the
+0-1 consensus problem. In the paper, the 0-1 consensus problem is defined to more accurately specify the
+system setting, and, without loss of generality, simplifies the problem:
+the input and output of each process are now binary. The simplification is so clever that many subsequent
+works have adopted this simplification in their own proofs.</p>
+<p>Together with the definition of the consensus problem, the paper also defines a set of terminologies that
+would be used in the proof. These terminologies help describe the proof, too.</p>
+<h1 id="On-the-FLP-Impossibility-Result"><a href="#On-the-FLP-Impossibility-Result" class="headerlink" title="On the FLP Impossibility Result"></a>On the FLP Impossibility Result</h1><p>The result, however, only shows the existence of situations where an agreement can not be reached in
+such settings; it does not tell us how often such situations will occur in practical systems.
+Thus to some extent the result just reminds you the possibility when your system runs into a non-deciding state.</p>
+<p>Nevertheless, the result proved very influential in the theoretical distributed system community.
+It spawns a lot of works on many topics, like failure detectors, impossibility of consensus in other settings, etc.
+Therefore, in 2001, it won the Dijkstra Prize for being one of the most influential papers in the field of
+distributed systems<sup>3</sup>.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
+<li><a href="https://www.quora.com/What-is-synchronous-and-asynchrounous-in-distributed-systems" target="_blank" rel="external">What is Synchronous and Asynchronous in Distributed Systems</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Byzantine_fault_tolerance" target="_blank" rel="external">Wikipedia page on Byzantine failures</a></li>
+<li><a href="https://www.podc.org/dijkstra/" target="_blank" rel="external">Dijkstra Prize in Distributed Computing</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Distributed-Systems/" rel="tag"># Distributed Systems</a>
+          
+            <a href="/tags/PODS/" rel="tag"># PODS</a>
+          
+            <a href="/tags/Classic-Papers/" rel="tag"># Classic Papers</a>
+          
+            <a href="/tags/Reading-Notes/" rel="tag"># Reading Notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/" rel="next" title="How to Read Relocation Table and Symbol Table From ELF File">
+                <i class="fa fa-chevron-left"></i> How to Read Relocation Table and Symbol Table From ELF File
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.jpg"
+              alt="Leasunhy" />
+          
+            <p class="site-author-name" itemprop="name">Leasunhy</p>
+            <p class="site-description motion-element" itemprop="description">Thoughts, sometimes insights.</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#On-the-System-Model"><span class="nav-number">1.</span> <span class="nav-text">On the System Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#On-the-0-1-Consensus-Problem"><span class="nav-number">2.</span> <span class="nav-text">On the 0-1 Consensus Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#On-the-FLP-Impossibility-Result"><span class="nav-number">3.</span> <span class="nav-text">On the FLP Impossibility Result</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leasunhy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://leasunhy-blog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://leasunhy.com/2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/';
+          this.page.identifier = '2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/';
+          this.page.title = 'Impossibility of Distributed Consensus with One Faulty Process';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://leasunhy-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
