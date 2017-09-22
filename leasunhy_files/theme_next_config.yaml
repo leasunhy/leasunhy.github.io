@@ -60,8 +60,8 @@ index_with_subtitle: false
 menu:
   home: / || home
   #about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
+  tags: /tags/ || tags
+  categories: /categories/ || th
   archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
@@ -78,8 +78,8 @@ menu_icons:
 
 # Schemes
 #scheme: Muse
-scheme: Mist
-#scheme: Pisces
+#scheme: Mist
+scheme: Pisces
 #scheme: Gemini
 
 
@@ -331,7 +331,7 @@ han: false
 # Disqus
 disqus:
   enable: true
-  shortname: leasunhy
+  shortname: leasunhy-blog
   count: true
 
 # Hypercomments
