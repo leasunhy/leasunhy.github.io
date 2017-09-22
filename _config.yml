@@ -81,5 +81,14 @@ deploy:
   repo: ssh://github.com/leasunhy/leasunhy.github.io
   branch: master
 
-disqus_shortname: leasunhy-blog
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: false
+  smartLists: true
+  smartypants: true
+  modifyAnchors: ''
+  autolink: true
 
