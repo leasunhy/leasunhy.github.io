@@ -16,7 +16,7 @@ with the famous *FLP impossibility result*, which placed an upper bound on distr
 in an asynchronous environment.
 
 The proof itself was not easy to follow, but there are already explanations from others all
-around, so I would focus on my own reflects on the paper, not on the proof itself.
+around, so I would focus more on my own reflections on the paper, rather than the proof itself.
 For a detailed explanation of the proof, I heartily recommend
 [this blog post](http://the-paper-trail.org/blog/a-brief-tour-of-flp-impossibility/).
 
