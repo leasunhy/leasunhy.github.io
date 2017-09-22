@@ -18,7 +18,7 @@ in an asynchronous environment.
 The proof itself was not easy to follow, but there are already explanations from others all
 around, so I would focus on my own reflects on the paper, not on the proof itself.
 For a detailed explanation of the proof, I heartily recommend
-(this blog post)[http://the-paper-trail.org/blog/a-brief-tour-of-flp-impossibility/].
+[this blog post](http://the-paper-trail.org/blog/a-brief-tour-of-flp-impossibility/).
 
 <!-- more -->
 
@@ -69,6 +69,6 @@ distributed systems^3^.
 
 # References
 
-1. (What is Synchronous and Asynchronous in Distributed Systems)[https://www.quora.com/What-is-synchronous-and-asynchrounous-in-distributed-systems]
-2. (Wikipedia page on Byzantine failures)[https://en.wikipedia.org/wiki/Byzantine_fault_tolerance]
-3. (Dijkstra Prize in Distributed Computing)[https://www.podc.org/dijkstra/]
+1. [What is Synchronous and Asynchronous in Distributed Systems](https://www.quora.com/What-is-synchronous-and-asynchrounous-in-distributed-systems)
+2. [Wikipedia page on Byzantine failures](https://en.wikipedia.org/wiki/Byzantine_fault_tolerance)
+3. [Dijkstra Prize in Distributed Computing](https://www.podc.org/dijkstra/)
