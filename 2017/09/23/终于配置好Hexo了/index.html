@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux,Binutils," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -102,18 +102,21 @@
 
 
 
-<meta name="description" content="When studying computer organization and writing an operating system, techniques to find out what entries (and the addresses) are in the symbol table of the ELF file are sometimes useful. If you’ve com">
-<meta name="keywords" content="Linux,Binutils">
+<meta name="description" content="搞了快一天，终于配置好Hexo了……未来几个月都不折腾了 这次更新配置了非常多的东西，稍微记录一下吧。 主题Repo之前是把主题官方Repo当成一个submodule，然后另外存储主题配置文件。但是如果要修改主题，这样做就不够了。 所以我fork了官方的主题Repo，自己管理。 将个人纪录类的文章和技术类的文章分开展示当初为了逼格，文章都用英文写，然后回不了头了……但是有时候也想用母语写点东西啊，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Read Relocation Table and Symbol Table From ELF File">
-<meta property="og:url" content="http://leasunhy.com/2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/index.html">
+<meta property="og:title" content="终于配置好Hexo了">
+<meta property="og:url" content="http://leasunhy.com/2017/09/23/终于配置好Hexo了/index.html">
 <meta property="og:site_name" content="Thoughts">
-<meta property="og:description" content="When studying computer organization and writing an operating system, techniques to find out what entries (and the addresses) are in the symbol table of the ELF file are sometimes useful. If you’ve com">
+<meta property="og:description" content="搞了快一天，终于配置好Hexo了……未来几个月都不折腾了 这次更新配置了非常多的东西，稍微记录一下吧。 主题Repo之前是把主题官方Repo当成一个submodule，然后另外存储主题配置文件。但是如果要修改主题，这样做就不够了。 所以我fork了官方的主题Repo，自己管理。 将个人纪录类的文章和技术类的文章分开展示当初为了逼格，文章都用英文写，然后回不了头了……但是有时候也想用母语写点东西啊，">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-22T05:12:41.000Z">
+<meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v7">
+<meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v7">
+<meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v7">
+<meta property="og:updated_time" content="2017-09-23T09:24:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Read Relocation Table and Symbol Table From ELF File">
-<meta name="twitter:description" content="When studying computer organization and writing an operating system, techniques to find out what entries (and the addresses) are in the symbol table of the ELF file are sometimes useful. If you’ve com">
+<meta name="twitter:title" content="终于配置好Hexo了">
+<meta name="twitter:description" content="搞了快一天，终于配置好Hexo了……未来几个月都不折腾了 这次更新配置了非常多的东西，稍微记录一下吧。 主题Repo之前是把主题官方Repo当成一个submodule，然后另外存储主题配置文件。但是如果要修改主题，这样做就不够了。 所以我fork了官方的主题Repo，自己管理。 将个人纪录类的文章和技术类的文章分开展示当初为了逼格，文章都用英文写，然后回不了头了……但是有时候也想用母语写点东西啊，">
+<meta name="twitter:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v7">
 
 
 
@@ -143,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="http://leasunhy.com/2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/"/>
+  <link rel="canonical" href="http://leasunhy.com/2017/09/23/终于配置好Hexo了/"/>
 
 
 
 
 
-  <title>How to Read Relocation Table and Symbol Table From ELF File | Thoughts</title>
+  <title>终于配置好Hexo了 | Thoughts</title>
   
 
 
@@ -295,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leasunhy.com/2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/">
+    <link itemprop="mainEntityOfPage" href="http://leasunhy.com/2017/09/23/终于配置好Hexo了/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leasunhy">
@@ -312,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">How to Read Relocation Table and Symbol Table From ELF File</h1>
+          <h1 class="post-title" itemprop="name headline">终于配置好Hexo了</h1>
         
 
         <div class="post-meta">
@@ -324,8 +327,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-08T22:52:13+08:00">
-                2015-11-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-23T16:57:31+08:00">
+                2017-09-23
               </time>
             
 
@@ -335,6 +338,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leisure/" itemprop="url" rel="index">
+                    <span itemprop="name">Leisure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -343,9 +368,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/23/终于配置好Hexo了/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/23/终于配置好Hexo了/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,11 +403,24 @@
       
 
       
-        <p>When studying computer organization and writing an operating system, techniques to find out what entries (and the addresses) are in the symbol table of the ELF file are sometimes useful.</p>
-<p>If you’ve compiled the source file into a object file and want to take a look into its symbol table, simply use a command as follows:
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ readelf --symbols SOME_ELF_FILE</div></pre></td></tr></table></figure></p>
-<p>If you are interested in its relocation table, just change that <code>--symbols</code> option, i.e.:
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ readelf --relocs SOME_ELF_FILE</div></pre></td></tr></table></figure></p>
+        <p>搞了快一天，终于配置好Hexo了……未来几个月都不折腾了<img class="github-emoji nofancybox" style="display:inline;border:0;vertical-align:text-bottom;padding:0;margin:0px 2px 0px 2px" title="joy" alt="joy" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v7" height="20" width="20"></p>
+<p>这次更新配置了非常多的东西，稍微记录一下吧。</p>
+<h2 id="主题Repo"><a href="#主题Repo" class="headerlink" title="主题Repo"></a>主题Repo</h2><p>之前是把主题官方Repo当成一个submodule，然后另外存储主题配置文件。但是如果要修改主题，这样做就不够了。
+所以我fork了官方的主题Repo，自己管理。</p>
+<h2 id="将个人纪录类的文章和技术类的文章分开展示"><a href="#将个人纪录类的文章和技术类的文章分开展示" class="headerlink" title="将个人纪录类的文章和技术类的文章分开展示"></a>将个人纪录类的文章和技术类的文章分开展示</h2><p>当初为了逼格，文章都用英文写，然后回不了头了……但是有时候也想用母语写点东西啊<img class="github-emoji nofancybox" style="display:inline;border:0;vertical-align:text-bottom;padding:0;margin:0px 2px 0px 2px" title="joy" alt="joy" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v7" height="20" width="20">，所以就有
+把两种文章分开的需求了~</p>
+<ol>
+<li>按<a href="http://forwardkth.github.io/2016/05/08/next-theme-post-visibility/" target="_blank" rel="external">这里</a>的步骤修改了主题源文件。</li>
+<li>用1中的方法修改了<code>archive</code>的布局。</li>
+<li>修改主题的配置文件，把<code>Leisure</code>这个类别放到主页里。</li>
+<li>在<code>scaffolds</code>中添加<code>leisure.md</code>，默认<code>visible = false</code>且<code>categories: Leisure</code>。</li>
+</ol>
+<p>最后的效果是：在<code>Home</code>和<code>Archive</code>中隐藏所有<code>visible === false</code>的文章，这些文章只会在<code>Leisure</code>分类下展示。
+这个分类可以从主页的<code>Categories</code>和<code>Leisure</code>进入。</p>
+<h2 id="不蒜子、Disqus"><a href="#不蒜子、Disqus" class="headerlink" title="不蒜子、Disqus"></a>不蒜子、Disqus</h2><p>增加了不蒜子阅读计数，修复了Disqus评论系统。</p>
+<h2 id="Emoji支持"><a href="#Emoji支持" class="headerlink" title="Emoji支持"></a>Emoji支持</h2><p>配置一下<code>hexo-filter-github-emojis</code>就好了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总之，这次折腾算是结束了<img class="github-emoji nofancybox" style="display:inline;border:0;vertical-align:text-bottom;padding:0;margin:0px 2px 0px 2px" title="joy" alt="joy" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v7" height="20" width="20"></p>
+<p>然后，继续回去看paper……</p>
 
       
     </div>
@@ -398,14 +436,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
-            <a href="/tags/Binutils/" rel="tag"># Binutils</a>
-          
-        </div>
-      
 
       
       
@@ -415,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/21/Find-Prime-Numbers-in-Parallel-Using-MPI-and-C/" rel="next" title="Find Prime Numbers in Parallel Using MPI and C++">
-                <i class="fa fa-chevron-left"></i> Find Prime Numbers in Parallel Using MPI and C++
+              <a href="/2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/" rel="next" title="Impossibility of Distributed Consensus with One Faulty Process">
+                <i class="fa fa-chevron-left"></i> Impossibility of Distributed Consensus with One Faulty Process
               </a>
             
           </div>
@@ -424,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/22/Impossibility-of-Distributed-Consensus-with-One-Faulty-Process/" rel="prev" title="Impossibility of Distributed Consensus with One Faulty Process">
-                Impossibility of Distributed Consensus with One Faulty Process <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -486,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -560,6 +595,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主题Repo"><span class="nav-number">1.</span> <span class="nav-text">主题Repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将个人纪录类的文章和技术类的文章分开展示"><span class="nav-number">2.</span> <span class="nav-text">将个人纪录类的文章和技术类的文章分开展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不蒜子、Disqus"><span class="nav-number">3.</span> <span class="nav-text">不蒜子、Disqus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Emoji支持"><span class="nav-number">4.</span> <span class="nav-text">Emoji支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -727,9 +778,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://leasunhy.com/2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/';
-          this.page.identifier = '2015/11/08/How-to-Read-Relocation-Table-and-Symbol-Table-From-ELF-File/';
-          this.page.title = 'How to Read Relocation Table and Symbol Table From ELF File';
+          this.page.url = 'http://leasunhy.com/2017/09/23/终于配置好Hexo了/';
+          this.page.identifier = '2017/09/23/终于配置好Hexo了/';
+          this.page.title = '终于配置好Hexo了';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://leasunhy-blog.disqus.com/embed.js';
